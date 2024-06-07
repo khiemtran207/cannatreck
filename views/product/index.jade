@@ -1,0 +1,26 @@
+extends ../layout
+block content
+  .container
+  div.row
+    h1.col-md-10 Products
+    div.col-md-2
+        a(href="products/create" , class="mt-2 btn btn-primary") Create
+    table.table.mt-3
+      thead
+        tr
+          th(scope='col') #
+          th(scope='col') Name
+          th(scope='col') Price
+          th(scope='col') Description
+          th(scope='col') Action
+      tbody
+        each product in products
+          tr
+            th(scope='row')= product.id
+            td= product.name
+            td= product.price
+            td!= product.description
+            td
+              a(href="products/edit/" + product.id, class="btn btn-secondary me-2") Edit
+              a(href="products/detail/" + product.id, class="btn btn-info") detail
+              a(href="products/delete/" + product.id, class="btn btn-danger") Delete

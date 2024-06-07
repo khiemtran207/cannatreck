@@ -1,0 +1,70 @@
+extends ../layout
+block content
+  if cartData
+    .container
+    div.cart-info
+    a(href="/checkout/" + cartData.id, class="btn btn-primary") Checkout
+    h2 Cart Information
+    a(href="/carts/delete/" + cartData.id, class="btn btn-danger btn-delete-cart") Delete
+    p.mb-0 Cart ID: #{cartData.id}
+    div.d-flex.align-items-center
+    p Customer ID: #{cartData.customer_name}
+    //- a(href="cart/edit-customer/" + cartData.id, class="btn btn-secondary ms-2") Edit
+    p Channel ID: #{cartData.channel_id}
+    p Email: #{cartData.email}
+    p Currency: #{cartData.currency.code}
+    p Tax Included: #{cartData.tax_included}
+    p Base Amount: #{cartData.base_amount}
+    p Discount Amount: #{cartData.discount_amount}
+    p Manual Discount Amount: #{cartData.manual_discount_amount}
+    p Cart Amount: #{cartData.cart_amount}
+    if cartData.coupons.length > 0
+      h3 Coupons
+      ul
+        each coupon in cartData.coupons
+          li= coupon
+    else
+      p No coupons applied
+
+    if cartData.discounts.length > 0
+      h3 Discounts
+      ul
+        each discount in cartData.discounts
+          li
+            p Discount ID: #{discount.id}
+            p Discounted Amount: #{discount.discounted_amount}
+    else
+      p No discounts applied
+    h3 Line Items
+    if cartData.line_items.physical_items.length > 0
+      h4 Physical Items
+      ul
+        each item in cartData.line_items.physical_items
+          li
+            pre= JSON.stringify(item, null, 2)
+    if cartData.line_items.digital_items.length > 0
+      h4 Digital Items
+      ul
+        each item in cartData.line_items.digital_items
+          li
+            pre= JSON.stringify(item, null, 2)
+    if cartData.line_items.gift_certificates.length > 0
+      h4 Gift Certificates
+      ul
+        each item in cartData.line_items.gift_certificates
+          li
+            pre= JSON.stringify(item, null, 2)
+    if cartData.line_items.custom_items.length > 0
+      h4 Custom Items
+      ul
+        each item in cartData.line_items.custom_items
+          li
+            pre= JSON.stringify(item, null, 2)
+
+    p Created Time: #{cartData.created_time}
+    p Updated Time: #{cartData.updated_time}
+    p Locale: #{cartData.locale}
+  else 
+    .container
+    p Cart data is not available.
+    a(href="/carts/create", class="btn btn-primary") Create cart

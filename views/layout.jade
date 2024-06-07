@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Admin Dashboard
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    style.
+      body {
+          font-family: 'Nunito', sans-serif;
+          ground-color: red;
+      }
+      .sidebar {
+          height: 100vh;
+          background-color: #f8f9fa;
+          border-right: 1px solid #e7e7e7;
+      }
+      .sidebar-sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+          height: calc(100vh - 48px);
+          padding-top: .5rem;
+      }
+      .nav-link.active {
+          color: #007bff;
+          background-color: #f8f9fa;
+      }
+      .nav-link:hover {
+          color: #0056b3;
+      }
+  body
+    .container-fluid
+      .row
+        nav.col-md-2.d-none.d-md-block.sidebar
+          .sidebar-sticky
+            ul.nav.flex-column
+              li.nav-item
+                h1 Manage Api
+              li.nav-item
+                a.nav-link(href='/carts') Cart manager
+              li.nav-item
+                a.nav-link(href='/carts-metafields') Get an Cart Metafields
+              li.nav-item
+                a.nav-link(href='/products') Products
+              li.nav-item
+                a.nav-link(href='{{ route("orders") }}') Orders
+              li.nav-item
+                a.nav-link(href='{{ route("customers") }}') Customer
+        main(role='main').col-md-9.ml-sm-auto.col-lg-10.px-md-4
+          block content
+
+    script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+    script.
+      $(document).ready(function(){
+          $(".nav-link").mouseover(function(){
+              $(this).animate({
+                  marginLeft: '+=10px',
+              });
+          }).mouseout(function(){
+              $(this).animate({
+                  marginLeft: '-=10px',
+              });
+          });
+      });
