@@ -7,7 +7,6 @@ class authController {
     // GET /auth
     async auth(req, res) {
         try {
-            console.log('dddd1000000')
             console.log(bigCommerce);
             // logger.info(bigCommerce);
             const data = await bigCommerce.authorize(req.query);

@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const productController = require('../controllers/productController')
-const abandonedCartController = require('../controllers/abandonedCartController')
 const authRouter = require('./authRouter')
-const cartMegafields = require('../controllers/cartMetafields')
 const cartController = require('../controllers/cartController')
 const productRouter = require('./product')
 
